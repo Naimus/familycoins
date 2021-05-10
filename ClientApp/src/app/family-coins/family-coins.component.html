@@ -1,0 +1,45 @@
+<h1 id="tableLabel">Family Members</h1>
+
+<p *ngIf="!members"><em>Loading...</em></p>
+
+<table class='table table-striped' aria-labelledby="tableLabel" *ngIf="members">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Name</th>
+      <th>Details</th>
+      <th>Family Points</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let member of members">
+      <td>{{ member.id }}</td>
+      <td>{{ member.name }}</td>
+      <td>{{ member.details }}</td>
+      <td>{{ member.familyCoinsScore }}</td>
+    </tr>
+  </tbody>
+</table>
+
+<p *ngIf="!transactions"><em>Loading...</em></p>
+
+<table class='table table-striped' aria-labelledby="tableLabel" *ngIf="transactions">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Type of Transaction</th>
+      <th>Name</th>
+      <th>Details</th>
+      <th>Points</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let transaction of transactions">
+      <td>{{ transaction.id }}</td>
+      <td>{{ transaction.typeOfTransaction }}</td>
+      <td>{{ transaction.name }}</td>
+      <td>{{ transaction.details }}</td>
+      <td>{{ transaction.points }}</td>
+    </tr>
+  </tbody>
+</table>
