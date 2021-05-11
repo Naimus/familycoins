@@ -4,6 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using familycoins.Models;
+using familycoins.Data;
 
 namespace familycoins.Controllers
 {
@@ -11,24 +13,20 @@ namespace familycoins.Controllers
     [Route("[controller]")]
     public class MembersController : ControllerBase
     {
-        private static readonly FamilyMember[] Members = new[]
-        {
-            new FamilyMember() { Id=0, Name="Eric", Details = "", FamilyCoinsScore = 500 },
-            new FamilyMember() { Id=1, Name="Adri", Details = "", FamilyCoinsScore = 500 }
-        };
-
+        private readonly FamilyCoinsDbContext _context;
         private readonly ILogger<MembersController> _logger;
 
-        public MembersController(ILogger<MembersController> logger)
+        public MembersController(ILogger<MembersController> logger, FamilyCoinsDbContext context)
         {
             _logger = logger;
+            _context = context;
         }
 
 
         [HttpGet]
         public IEnumerable<FamilyMember> GetMembers()
         {
-            return Members;
+            return _context.FamilyMembers;
         }
     }
 }

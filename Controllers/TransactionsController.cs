@@ -4,6 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using familycoins.Models;
+using familycoins.Data;
 
 namespace familycoins.Controllers
 {
@@ -11,23 +13,20 @@ namespace familycoins.Controllers
     [Route("[controller]")]
     public class TransactionsController : ControllerBase
     {
-        private static readonly FamilyPointsTransaction[] Transactions = new[]
-        {
-            new FamilyPointsTransaction() { Id=0, TypeOfTransaction=FamilyPointsTransactionType.FAMILYACTIVITY, Name="No Hacer Caso", Details = "", points = -100 },
-            new FamilyPointsTransaction() { Id=1, TypeOfTransaction=FamilyPointsTransactionType.FAMILYACTIVITY, Name="No Hacer Caso 2", Details = "", points = -100 }
-        };
+        private readonly FamilyCoinsDbContext _context;
 
         private readonly ILogger<TransactionsController> _logger;
 
-        public TransactionsController(ILogger<TransactionsController> logger)
+        public TransactionsController(ILogger<TransactionsController> logger, FamilyCoinsDbContext context)
         {
             _logger = logger;
+            _context = context;
         }
 
         [HttpGet]
         public IEnumerable<FamilyPointsTransaction> GetTransactions()
         {
-            return Transactions;
+            return _context.Transactions;
         }
 
     }

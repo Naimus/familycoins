@@ -1,0 +1,11 @@
+{
+    "sqltools.connections": [
+        {
+            "previewLimit": 50,
+            "driver": "SQLite",
+            "name": "familycoins",
+            "database": "${workspaceFolder:familycoins}/FamilyCoins.db"
+        }
+    ],
+    "sqltools.useNodeRuntime": true
+}

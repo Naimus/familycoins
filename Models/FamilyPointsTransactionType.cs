@@ -1,6 +1,7 @@
 using System;
+using System.ComponentModel.DataAnnotations;
 
-namespace familycoins
+namespace familycoins.Models
 {
     public enum FamilyPointsTransactionType
     {

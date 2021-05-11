@@ -5,6 +5,8 @@ using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.EntityFrameworkCore;
+using familycoins.Data;
 
 namespace familycoins
 {
@@ -26,6 +28,8 @@ namespace familycoins
             {
                 configuration.RootPath = "ClientApp/dist";
             });
+                services.AddDbContext<FamilyCoinsDbContext>(options =>
+        options.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
